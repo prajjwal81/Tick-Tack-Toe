@@ -41,6 +41,9 @@ const App = () => {
         {board.map((_, index) => renderSquare(index))}
       </View>
       {winner && <Text style={styles.winnerText}> {winner} is Winner </Text>}
+      {!winner && board.every(square => square) && (
+        <Text style={styles.winnerText}>Match is Draw</Text>
+      )}
       <TouchableOpacity style={styles.resetButton} onPress={resetGame}>
         <Text style={styles.resetButtonText}>Reset Game</Text>
       </TouchableOpacity>
@@ -76,10 +79,12 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 20,
     color: 'white',
+    marginTop: '10%',
+    fontStyle: 'italic',
   },
   board: {
     width: Dimensions.get('window').width / 1.2,
